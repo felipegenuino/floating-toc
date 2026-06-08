@@ -1,0 +1,17 @@
+import { defineConfig } from "tsup";
+
+export default defineConfig({
+  entry: { index: "src/index.ts" },
+  format: ["esm", "cjs", "iife"],
+  globalName: "FloatingTOC",
+  dts: true,
+  clean: true,
+  minify: true,
+  sourcemap: true,
+  target: "es2019",
+  outExtension({ format }) {
+    if (format === "cjs") return { js: ".cjs" };
+    if (format === "iife") return { js: ".global.js" };
+    return { js: ".js" };
+  },
+});

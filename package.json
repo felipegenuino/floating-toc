@@ -1,0 +1,62 @@
+{
+  "name": "floating-toc",
+  "version": "0.1.0",
+  "description": "Floating dock-style table of contents with scrollspy and a sliding pill highlight. Zero dependencies, framework-agnostic.",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./styles/core.css": "./styles/core.css",
+    "./styles/theme-rta.css": "./styles/theme-rta.css",
+    "./styles/*": "./styles/*"
+  },
+  "unpkg": "./dist/index.global.js",
+  "jsdelivr": "./dist/index.global.js",
+  "sideEffects": [
+    "*.css"
+  ],
+  "files": [
+    "dist",
+    "styles",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "toc",
+    "table-of-contents",
+    "scrollspy",
+    "navigation",
+    "nav",
+    "dock",
+    "pill",
+    "anchor",
+    "vanilla",
+    "zero-dependency",
+    "intersection-observer"
+  ],
+  "author": "Felipe Genuino",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/felipegenuino/floating-toc.git"
+  },
+  "homepage": "https://github.com/felipegenuino/floating-toc#readme",
+  "bugs": {
+    "url": "https://github.com/felipegenuino/floating-toc/issues"
+  },
+  "devDependencies": {
+    "tsup": "^8.3.0",
+    "typescript": "^5.6.0"
+  }
+}

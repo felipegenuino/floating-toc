@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>floating-toc — demo</title>
+    <link rel="stylesheet" href="../styles/core.css" />
+    <link rel="stylesheet" href="../styles/theme-rta.css" />
+    <style>
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: system-ui, sans-serif;
+        color: #0d2a30;
+        background: #f3f7f8;
+      }
+      section {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 12px;
+        padding: 40px;
+      }
+      section:nth-child(odd) { background: #e6eff1; }
+      h2 { font-size: clamp(2rem, 6vw, 4rem); margin: 0; }
+      p { max-width: 50ch; text-align: center; opacity: 0.75; }
+      footer { padding: 140px 40px; text-align: center; opacity: 0.6; }
+    </style>
+  </head>
+  <body>
+    <section id="convites"><h2>Convites</h2><p>Scroll down — the active item in the dock follows the section in the center of the screen.</p></section>
+    <section id="sobre"><h2>Sobre</h2><p>Hover the links to see the sliding pill follow your cursor.</p></section>
+    <section id="cursos"><h2>Cursos</h2><p>On mobile, the dock becomes a horizontal scroller that auto-centers the active item.</p></section>
+    <section id="programacao"><h2>Programação</h2><p>Reload the page to watch the entrance animation play again.</p></section>
+    <section id="palestrantes"><h2>Palestrantes</h2><p>Everything respects prefers-reduced-motion.</p></section>
+    <section id="ingressos"><h2>Ingressos</h2><p>The CTA button is optional.</p></section>
+    <section id="local"><h2>Local</h2><p>That's it — zero dependencies.</p></section>
+    <footer>floating-toc demo</footer>
+
+    <script type="module">
+      import { createTOC } from "../dist/index.js";
+      createTOC({
+        ariaLabel: "Índice das seções",
+        sections: [
+          { id: "convites", label: "Convites" },
+          { id: "sobre", label: "Sobre" },
+          { id: "cursos", label: "Cursos" },
+          { id: "programacao", label: "Programação" },
+          { id: "palestrantes", label: "Palestrantes" },
+          { id: "ingressos", label: "Ingressos" },
+          { id: "local", label: "Local" },
+        ],
+        cta: { href: "#ingressos", label: "Garantir vaga" },
+      });
+    </script>
+  </body>
+</html>

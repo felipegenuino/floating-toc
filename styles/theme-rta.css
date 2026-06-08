@@ -1,0 +1,41 @@
+/* floating-toc — "RTA" theme: petrol glassmorphism look from RTA Brasil.
+   Import AFTER core.css:
+     import "floating-toc/styles/core.css";
+     import "floating-toc/styles/theme-rta.css";
+*/
+
+.ftoc {
+  background: linear-gradient(
+    135deg,
+    rgba(11, 40, 47, 0.82),
+    rgba(8, 30, 36, 0.74)
+  );
+  -webkit-backdrop-filter: blur(22px) saturate(185%);
+  backdrop-filter: blur(22px) saturate(185%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 10px 34px rgba(8, 38, 46, 0.34);
+
+  --ftoc-color: #cfe2e6;
+  --ftoc-color-active: #fff;
+  --ftoc-pill-bg: rgba(98, 194, 208, 0.22);
+}
+
+.ftoc-links a:first-child {
+  padding-left: 16px;
+}
+
+.ftoc-cta {
+  background: #fff;
+  color: #144753; /* RTA petrol */
+  font-weight: 700;
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 11px 18px;
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.14);
+  transition: transform 0.15s, box-shadow 0.2s;
+}
+.ftoc-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.24);
+}

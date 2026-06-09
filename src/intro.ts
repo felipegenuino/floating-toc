@@ -2,6 +2,9 @@ export interface IntroConfig {
   riseDelay: number;
   openDelay: number;
   cleanupDelay: number;
+  /** Called once the open transition has settled, so layout-dependent things
+   *  (like the pill position) can be measured against the final layout. */
+  onOpen?: () => void;
 }
 
 /**
@@ -29,7 +32,11 @@ export function playIntro(
       window.setTimeout(() => nav.classList.add("ftoc-rise"), config.riseDelay),
       window.setTimeout(() => nav.classList.add("ftoc-open"), config.openDelay),
       window.setTimeout(() => {
+        if (config.onOpen) config.onOpen();
+      }, config.openDelay + 650),
+      window.setTimeout(() => {
         nav.classList.remove("ftoc-anim", "ftoc-rise", "ftoc-open");
+        if (config.onOpen) config.onOpen();
       }, config.cleanupDelay),
     ];
   };

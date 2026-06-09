@@ -23,6 +23,12 @@ export function createTOC(
   const pill: PillController | null =
     options.pill !== false ? createPill(linksBox, links) : null;
 
+  const introEnabled = options.intro !== false && !reduced;
+  // While the entrance animation runs the capsule is collapsed, so the pill
+  // would measure a wrong position. Hold it back until the intro has settled.
+  let pillReady = !introEnabled;
+  let activeLink: HTMLAnchorElement | null = null;
+
   const smoothCenter = options.smoothCenter !== false && !reduced;
   function centerActive(link: HTMLElement): void {
     if (linksBox.scrollWidth <= linksBox.clientWidth + 2) return;
@@ -41,15 +47,16 @@ export function createTOC(
       threshold: so.threshold ?? 0,
       activeClass,
       onActive: (id, link) => {
+        activeLink = link;
         centerActive(link);
-        if (pill) pill.moveTo(link);
+        if (pill && pillReady) pill.moveTo(link);
         if (options.onChange) options.onChange(id, link);
       },
     });
   }
 
   let stopIntro: (() => void) | null = null;
-  if (options.intro !== false && !reduced) {
+  if (introEnabled) {
     const io: IntroOptions =
       typeof options.intro === "object" ? options.intro : {};
     const items: HTMLElement[] = links.slice();
@@ -59,6 +66,11 @@ export function createTOC(
       riseDelay: io.riseDelay ?? 120,
       openDelay: io.openDelay ?? 680,
       cleanupDelay: io.cleanupDelay ?? 2000,
+      onOpen: () => {
+        pillReady = true;
+        if (pill) pill.moveTo(activeLink);
+        if (activeLink) centerActive(activeLink);
+      },
     });
   }
 
@@ -73,11 +85,13 @@ export function createTOC(
       });
       link.classList.add(activeClass);
       link.setAttribute("aria-current", "true");
+      activeLink = link;
+      pillReady = true;
       if (pill) pill.moveTo(link);
       centerActive(link);
     },
     refresh() {
-      if (pill) pill.moveTo(pill.current());
+      if (pill) pill.moveTo(activeLink);
     },
     destroy() {
       if (stopIntro) stopIntro();

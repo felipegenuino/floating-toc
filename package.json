@@ -1,6 +1,6 @@
 {
   "name": "floating-toc",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Floating dock-style table of contents with scrollspy and a sliding pill highlight. Zero dependencies, framework-agnostic.",
   "type": "module",
   "main": "./dist/index.cjs",

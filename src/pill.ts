@@ -29,8 +29,15 @@ export function createPill(
       return;
     }
     pill.style.opacity = "1";
-    pill.style.width = target.offsetWidth + "px";
-    pill.style.transform = "translateX(" + target.offsetLeft + "px)";
+    // Position via rects (not offsetLeft/Width): when .ftoc-links collapses,
+    // centered links overflow and report a negative offsetLeft, throwing the
+    // pill outside the dock. getBoundingClientRect uses the real rendered
+    // position; scrollLeft keeps it aligned when the rail scrolls (mobile).
+    const box = linksBox.getBoundingClientRect();
+    const r = target.getBoundingClientRect();
+    pill.style.width = r.width + "px";
+    pill.style.transform =
+      "translateX(" + (r.left - box.left + linksBox.scrollLeft) + "px)";
   }
 
   const onEnter = (e: Event): void => {

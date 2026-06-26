@@ -12,6 +12,23 @@ export interface CTADef {
   label: string;
 }
 
+export interface MenuItemDef {
+  label: string;
+  href?: string;
+  icon?: string;        // inline SVG/HTML before the label
+  active?: boolean;     // current item: active class + check
+  hreflang?: string;    // for link items (e.g. language switcher)
+  onSelect?: (item: MenuItemDef) => void;
+}
+export interface MenuDef {
+  label?: string;       // trigger text; omit for icon-only
+  icon?: string;        // trigger leading icon (inline SVG/HTML)
+  ariaLabel?: string;   // required when no visible label
+  caret?: boolean;      // chevron that rotates when open; default true
+  align?: "start" | "end"; // popover alignment; default "start"
+  items: MenuItemDef[];
+}
+
 /** Timing of the entrance animation (ms). */
 export interface IntroOptions {
   /** Delay before the capsule rises from the bottom. Default 120. */
@@ -63,6 +80,8 @@ export interface FloatingTOCOptions {
   activeClass?: string;
   /** Called whenever the active section changes. */
   onChange?: (id: string, link: HTMLAnchorElement) => void;
+  /** Dropdown menus rendered in the dock (accessible icon+label items). */
+  menus?: MenuDef[];
 }
 
 export interface FloatingTOCInstance {

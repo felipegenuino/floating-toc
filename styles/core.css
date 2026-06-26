@@ -148,6 +148,7 @@
   }
 }
 .ftoc.ftoc-anim.ftoc-open .ftoc-links a,
+.ftoc.ftoc-anim.ftoc-open .ftoc-menu,
 .ftoc.ftoc-anim.ftoc-open .ftoc-cta {
   animation: ftoc-item-in 0.55s both cubic-bezier(0.2, 0.8, 0.2, 1);
   animation-delay: calc(
@@ -208,11 +209,134 @@
   .ftoc,
   .ftoc-pill,
   .ftoc-rail,
-  .ftoc-wrap {
+  .ftoc-wrap,
+  .ftoc-caret,
+  .ftoc-pop {
     transition: none;
   }
   .ftoc.ftoc-anim.ftoc-open .ftoc-links a,
+  .ftoc.ftoc-anim.ftoc-open .ftoc-menu,
   .ftoc.ftoc-anim.ftoc-open .ftoc-cta {
     animation: none;
   }
 }
+
+/* ── Dropdown menus ──────────────────────────────────────────────────────────
+   --ftoc-trigger-pad          Trigger button padding              (9px 13px)
+   --ftoc-caret-size           Caret chevron size                  (14px)
+   --ftoc-icon-size            Trigger leading icon size           (18px)
+   --ftoc-pop-gap              Gap between trigger and popover     (12px)
+   --ftoc-pop-min              Popover min-width                   (190px)
+   --ftoc-pop-radius           Popover border-radius               (16px)
+   --ftoc-pop-bg               Popover background                  (#fff)
+   --ftoc-pop-shadow           Popover box-shadow                  (0 18px 44px rgba(0,0,0,.25))
+   --ftoc-pop-color            Popover item text color             (inherit)
+   --ftoc-pop-font-size        Popover item font-size              (.86rem)
+   --ftoc-pop-item-pad         Popover item padding                (9px 14px)
+   --ftoc-pop-item-hover       Popover item hover background       (rgba(127,127,127,.14))
+   --ftoc-pop-icon-size        Popover item icon size              (20px)
+   ────────────────────────────────────────────────────────────────────────── */
+
+.ftoc-menu { position: relative; display: flex; }
+
+.ftoc-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 0;
+  font: inherit;
+  cursor: pointer;
+  color: var(--ftoc-color);
+  padding: var(--ftoc-trigger-pad, 9px 13px);
+  border-radius: var(--ftoc-radius);
+  transition: background .18s, color .18s;
+}
+.ftoc-trigger:hover,
+.ftoc-menu.ftoc-open .ftoc-trigger {
+  color: var(--ftoc-color-active);
+}
+
+.ftoc-ic {
+  display: inline-flex;
+  flex: 0 0 auto;
+}
+.ftoc-ic svg,
+.ftoc-ic img {
+  width: var(--ftoc-icon-size, 18px);
+  height: var(--ftoc-icon-size, 18px);
+}
+
+.ftoc-caret {
+  width: var(--ftoc-caret-size, 14px);
+  height: var(--ftoc-caret-size, 14px);
+  transition: transform .25s;
+}
+.ftoc-menu.ftoc-open .ftoc-caret {
+  transform: rotate(180deg);
+}
+
+.ftoc-pop {
+  position: absolute;
+  bottom: calc(100% + var(--ftoc-pop-gap, 12px));
+  left: 0;
+  min-width: var(--ftoc-pop-min, 190px);
+  display: flex;
+  flex-direction: column;
+  padding: 6px;
+  border-radius: var(--ftoc-pop-radius, 16px);
+  background: var(--ftoc-pop-bg, #fff);
+  box-shadow: var(--ftoc-pop-shadow, 0 18px 44px rgba(0,0,0,.25));
+  opacity: 0;
+  transform: translateY(8px) scale(.98);
+  pointer-events: none;
+  transition: opacity .22s, transform .22s;
+  z-index: 10;
+}
+.ftoc-menu[data-align="end"] .ftoc-pop {
+  left: auto;
+  right: 0;
+}
+.ftoc-menu.ftoc-open .ftoc-pop {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+.ftoc-pop[hidden] { display: none; }
+
+.ftoc-pop-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  background: transparent;
+  border: 0;
+  font: inherit;
+  cursor: pointer;
+  color: var(--ftoc-pop-color, inherit);
+  font-size: var(--ftoc-pop-font-size, .86rem);
+  padding: var(--ftoc-pop-item-pad, 9px 14px);
+  border-radius: calc(var(--ftoc-pop-radius, 16px) - 4px);
+  width: 100%;
+  text-align: left;
+  transition: background .15s, color .15s;
+}
+.ftoc-pop-item:hover {
+  background: var(--ftoc-pop-item-hover, rgba(127,127,127,.14));
+}
+.ftoc-pop-label { flex: 1 1 auto; }
+.ftoc-pop-item .ftoc-ic svg,
+.ftoc-pop-item .ftoc-ic img {
+  width: var(--ftoc-pop-icon-size, 20px);
+  height: var(--ftoc-pop-icon-size, 20px);
+}
+
+.ftoc-pop-item .ftoc-check {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+  margin-left: auto;
+  opacity: 0;
+}
+.ftoc-pop-item.is-active .ftoc-check { opacity: 1; }

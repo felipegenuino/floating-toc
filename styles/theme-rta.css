@@ -39,3 +39,27 @@
   transform: translateY(-2px);
   box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.24);
 }
+
+/* ── Menus ──────────────────────────────────────────────────────────────── */
+.ftoc-trigger:hover,
+.ftoc-menu.ftoc-open .ftoc-trigger {
+  background: rgba(98, 194, 208, .18);
+}
+
+.ftoc-nav {
+  --ftoc-pop-bg: rgba(13, 42, 49, .97);
+  --ftoc-pop-color: #cfe2e6;
+  --ftoc-pop-shadow: 0 18px 44px rgba(6, 26, 32, .5);
+}
+
+.ftoc-nav .ftoc-pop {
+  backdrop-filter: blur(22px) saturate(185%);
+  border: 1px solid rgba(255, 255, 255, .12);
+}
+
+.ftoc-nav .ftoc-pop-item:hover {
+  background: rgba(98, 194, 208, .16);
+  color: #fff;
+}
+.ftoc-nav .ftoc-pop-item.is-active { color: #fff; }
+.ftoc-nav .ftoc-check { color: #7fd1dd; }

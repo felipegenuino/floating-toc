@@ -9,6 +9,7 @@ import { resolveNav } from "./build";
 import { createPill, type PillController } from "./pill";
 import { createScrollspy, type ScrollspyController } from "./scrollspy";
 import { playIntro } from "./intro";
+import { createMenus, type MenuController } from "./menu";
 
 const DEFAULT_ROOT_MARGIN = "-50% 0px -48% 0px";
 
@@ -38,6 +39,8 @@ export function createTOC(
     });
   }
 
+  const menus: MenuController = createMenus(nav);
+
   let spy: ScrollspyController | null = null;
   if (options.scrollspy !== false) {
     const so: ScrollspyOptions =
@@ -60,6 +63,7 @@ export function createTOC(
     const io: IntroOptions =
       typeof options.intro === "object" ? options.intro : {};
     const items: HTMLElement[] = links.slice();
+    nav.querySelectorAll<HTMLElement>(".ftoc-menu").forEach((m) => items.push(m));
     const cta = nav.querySelector<HTMLElement>(".ftoc-cta");
     if (cta) items.push(cta);
     stopIntro = playIntro(nav, items, {
@@ -97,6 +101,7 @@ export function createTOC(
       if (stopIntro) stopIntro();
       if (spy) spy.destroy();
       if (pill) pill.destroy();
+      menus.destroy();
       nav.classList.remove("ftoc-anim", "ftoc-rise", "ftoc-open");
     },
   };
@@ -110,4 +115,6 @@ export type {
   CTADef,
   IntroOptions,
   ScrollspyOptions,
+  MenuDef,
+  MenuItemDef,
 } from "./types";

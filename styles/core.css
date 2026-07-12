@@ -1,7 +1,7 @@
 /* floating-toc — core (structural) styles.
    Colors are intentionally minimal so you can theme via CSS variables or a theme file.
    Tunable variables (with defaults):
-     --ftoc-offset: 22px            distance from the bottom edge (desktop)
+     --ftoc-offset: 22px            bottom edge distance; also sets the horizontal inset of the capsule's max-width (desktop)
      --ftoc-offset-mobile: 10px     inset from edges on mobile
      --ftoc-z: 100                  z-index
      --ftoc-radius: 999px           corner radius (capsule)

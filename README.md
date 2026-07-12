@@ -85,8 +85,8 @@ createTOC({ root: ".ftoc" });
 `examples/` has one page per real-world scenario (they load `dist/` directly —
 run `npm run build` first):
 
-- [`index.html`](examples/index.html) — full demo (7 items + CTA)
-- [`rta-mundi.html`](examples/rta-mundi.html) — 7 items + CTA, RTA theme
+- [`index.html`](examples/index.html) — full demo (6 items + CTA)
+- [`rta-mundi.html`](examples/rta-mundi.html) — 6 items + CTA, RTA theme
 - [`hy-empreendimentos.html`](examples/hy-empreendimentos.html) — pt-BR labels, no CTA, light theme
 - [`minimal.html`](examples/minimal.html) — 3 items, structural CSS only
 - [`stress.html`](examples/stress.html) — 12 long items + CTA (forces rail scroll)

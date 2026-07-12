@@ -7,7 +7,7 @@ export interface PillController {
 }
 
 /**
- * Creates the sliding pill highlight. The pill is injected as the first child of
+ * Creates the sliding pill highlight. The pill is appended as the last child of
  * the links container (behind the links, z-index 0) and animated via CSS.
  * It follows hover/focus, and returns to the active link on mouse-leave.
  */

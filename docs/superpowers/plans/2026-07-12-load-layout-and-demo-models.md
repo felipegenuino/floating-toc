@@ -524,15 +524,25 @@ git commit -m "feat(examples): matriz de modelos (rta-mundi, hy, minimal, stress
 - Create: `vercel.json`
 - Modify: `README.md` (seção de exemplos)
 
-- [ ] **Step 1: criar `vercel.json` na raiz**
+- [ ] **Step 1: criar `vercel.json` e `.vercelignore` na raiz**
 
+`dist/` está no `.gitignore`, então a Vercel precisa **buildar** antes de servir:
+
+`vercel.json`:
 ```json
 {
+  "buildCommand": "npm run build",
+  "outputDirectory": ".",
   "rewrites": [{ "source": "/", "destination": "/examples/index.html" }]
 }
 ```
 
-(Mantém a URL raiz `floating-toc.vercel.app` servindo a demo, com `../dist` e `../styles` acessíveis. **Nota pro Felipe:** conferir no dashboard da Vercel que o projeto publica a raiz do repo, sem "output directory" custom apontando pra `examples/`.)
+`.vercelignore`:
+```
+node_modules
+```
+
+(Mantém a URL raiz `floating-toc.vercel.app` servindo a demo, com `../dist` — gerado no build da Vercel — e `../styles` acessíveis. **Nota pro Felipe:** conferir no dashboard da Vercel que o projeto publica a raiz do repo, sem "output directory" custom apontando pra `examples/`.)
 
 - [ ] **Step 2: README — seção de exemplos**
 

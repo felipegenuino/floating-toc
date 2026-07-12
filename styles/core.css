@@ -27,6 +27,7 @@
   bottom: var(--ftoc-offset, 22px);
   left: 50%;
   transform: translateX(-50%);
+  max-width: calc(100vw - 2 * var(--ftoc-offset, 22px));
   z-index: var(--ftoc-z, 100);
   border-radius: var(--ftoc-radius, 999px);
   transition: opacity 0.5s ease, transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -58,7 +59,21 @@
   display: flex;
   gap: var(--ftoc-link-gap, 4px);
   flex-wrap: nowrap;
-  justify-content: center;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  scroll-snap-type: x proximity;
+}
+.ftoc-links::-webkit-scrollbar {
+  display: none;
+}
+/* centraliza enquanto cabe; vira scroll alinhado ao início quando não cabe
+   (a pílula é um <i>, por isso *-of-type e não *-child) */
+.ftoc-links > a:first-of-type {
+  margin-inline-start: auto;
+}
+.ftoc-links > a:last-of-type {
+  margin-inline-end: auto;
 }
 
 .ftoc-links a {
@@ -75,6 +90,7 @@
   padding: var(--ftoc-link-pad, 8px 13px);
   border-radius: var(--ftoc-radius, 999px);
   transition: color 0.2s;
+  scroll-snap-align: center;
 }
 .ftoc-links a:hover,
 .ftoc-links a.is-active {
@@ -165,6 +181,7 @@
     left: var(--ftoc-offset-mobile, 10px);
     right: var(--ftoc-offset-mobile, 10px);
     bottom: max(var(--ftoc-offset-mobile, 10px), env(safe-area-inset-bottom));
+    max-width: none;
     transform: none;
     border-radius: var(--ftoc-radius-mobile, 18px);
   }
@@ -175,18 +192,7 @@
     flex: 1 1 auto;
   }
   .ftoc-rail > .ftoc-links {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    scroll-snap-type: x proximity;
     flex: 1 1 auto;
-    justify-content: flex-start;
-  }
-  .ftoc-rail > .ftoc-links::-webkit-scrollbar {
-    display: none;
-  }
-  .ftoc-links a {
-    scroll-snap-align: start;
   }
   /* no horizontal expand on mobile — only a vertical fade/slide */
   .ftoc.ftoc-anim .ftoc-rail {

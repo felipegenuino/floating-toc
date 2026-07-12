@@ -52,6 +52,23 @@ export function createPill(
     if (!hovering) place(resting);
   };
 
+  // Re-measure on real layout signals instead of trusting load-time timing:
+  // late font swap changes text widths (uppercase + letter-spacing!), and
+  // the entrance animation resizes the links box. The window `resize`
+  // listener below stays as the fallback for older environments.
+  if (typeof document !== "undefined" && document.fonts) {
+    document.fonts.ready.then(() => {
+      if (!hovering) place(resting);
+    });
+  }
+  let ro: ResizeObserver | null = null;
+  if (typeof ResizeObserver !== "undefined") {
+    ro = new ResizeObserver(() => {
+      if (!hovering) place(resting);
+    });
+    ro.observe(linksBox);
+  }
+
   links.forEach((a) => {
     a.addEventListener("mouseenter", onEnter);
     a.addEventListener("focus", onEnter);
@@ -74,6 +91,7 @@ export function createPill(
       });
       linksBox.removeEventListener("mouseleave", onLeaveBox);
       window.removeEventListener("resize", onResize);
+      if (ro) ro.disconnect();
       pill.remove();
     },
   };

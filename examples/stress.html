@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>floating-toc — model: stress (12 long items + CTA)</title>
+    <link rel="stylesheet" href="../styles/core.css" />
+    <link rel="stylesheet" href="../styles/theme-rta.css" />
+    <link rel="stylesheet" href="./models.css" />
+  </head>
+  <body>
+    <a class="back" href="./index.html">← models</a>
+    <main><section id="s1"><h1>Stress model</h1><p>12 long labels + CTA. The rail must scroll at any window width and center the active item.</p></section></main>
+    <script src="../dist/index.global.js"></script>
+    <script>
+      var labels = [
+        "Introduction", "Getting started", "Configuration", "Advanced usage",
+        "Accessibility notes", "Theming variables", "Scrollspy options",
+        "Entrance animation", "Reduced motion", "Framework recipes",
+        "Troubleshooting", "Changelog",
+      ];
+      var main = document.querySelector("main");
+      var sections = labels.map(function (label, i) {
+        var id = "s" + (i + 1);
+        if (i > 0) {
+          var sec = document.createElement("section");
+          sec.id = id;
+          sec.innerHTML = "<h2>" + label + "</h2><p>Scroll…</p>";
+          main.appendChild(sec);
+        }
+        return { id: id, label: label };
+      });
+      FloatingTOC.createTOC({
+        ariaLabel: "Section index",
+        sections: sections,
+        cta: { href: "#s12", label: "Get started" },
+      });
+    </script>
+  </body>
+</html>

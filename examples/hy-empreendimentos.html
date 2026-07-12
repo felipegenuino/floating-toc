@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>floating-toc — modelo: HY Empreendimentos (PT, sem CTA, tema claro)</title>
+    <link rel="stylesheet" href="../styles/core.css" />
+    <link rel="stylesheet" href="./models.css" />
+    <style>
+      /* light theme, page-owned (shows theming without theme-rta.css) */
+      .ftoc {
+        background: #ffffff;
+        color: #24343a;
+        box-shadow: 0 10px 30px rgba(20, 40, 46, 0.18);
+        --ftoc-pill-bg: rgba(36, 52, 58, 0.1);
+        --ftoc-color-active: #0d5c63;
+      }
+    </style>
+  </head>
+  <body>
+    <a class="back" href="./index.html">← models</a>
+    <main>
+      <section id="inicio"><h1>Modelo HY Empreendimentos</h1><p>Rótulos em português, sem CTA, tema claro definido pela página.</p></section>
+      <section id="empreendimentos"><h2>Empreendimentos</h2><p>Role…</p></section>
+      <section id="diario"><h2>Diário</h2><p>Role…</p></section>
+      <section id="sobre"><h2>Sobre</h2><p>Role…</p></section>
+      <section id="contato"><h2>Contato</h2><p>Fim.</p></section>
+    </main>
+    <script src="../dist/index.global.js"></script>
+    <script>
+      FloatingTOC.createTOC({
+        ariaLabel: "Índice de seções",
+        sections: [
+          { id: "inicio", label: "Início" },
+          { id: "empreendimentos", label: "Empreendimentos" },
+          { id: "diario", label: "Diário" },
+          { id: "sobre", label: "Sobre" },
+          { id: "contato", label: "Contato" },
+        ],
+      });
+    </script>
+  </body>
+</html>

@@ -86,9 +86,23 @@
         color: #144753;
         font-weight: 600;
       }
+      .models-bar {
+        position: fixed; top: 14px; right: 14px; z-index: 200;
+        display: flex; gap: 10px; align-items: center;
+        font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase;
+      }
+      .models-bar span { opacity: 0.6; }
+      .models-bar a { color: inherit; }
     </style>
   </head>
   <body>
+    <nav class="models-bar" aria-label="Example models">
+      <span>Models:</span>
+      <a href="./rta-mundi.html">RTA Mundi</a>
+      <a href="./hy-empreendimentos.html">HY (pt)</a>
+      <a href="./minimal.html">Minimal</a>
+      <a href="./stress.html">Stress</a>
+    </nav>
     <section id="overview">
       <span class="eyebrow">floating-toc</span>
       <h1>A floating table&nbsp;of&nbsp;contents</h1>

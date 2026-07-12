@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>floating-toc — model: minimal (3 items, core.css only)</title>
+    <link rel="stylesheet" href="../styles/core.css" />
+    <link rel="stylesheet" href="./models.css" />
+    <style>
+      .ftoc { background: #e7ecec; }
+    </style>
+  </head>
+  <body>
+    <a class="back" href="./index.html">← models</a>
+    <main>
+      <section id="one"><h1>Minimal model</h1><p>Smallest setup: 3 items, no CTA, structural CSS only.</p></section>
+      <section id="two"><h2>Two</h2><p>Scroll…</p></section>
+      <section id="three"><h2>Three</h2><p>End.</p></section>
+    </main>
+    <script src="../dist/index.global.js"></script>
+    <script>
+      FloatingTOC.createTOC({
+        ariaLabel: "Section index",
+        sections: [
+          { id: "one", label: "One" },
+          { id: "two", label: "Two" },
+          { id: "three", label: "Three" },
+        ],
+      });
+    </script>
+  </body>
+</html>

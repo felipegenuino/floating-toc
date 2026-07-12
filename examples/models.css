@@ -1,0 +1,23 @@
+/* shared page chrome for the example models — NOT part of the library */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: #22333b;
+  background: #f4f7f7;
+}
+main section {
+  min-height: 92vh;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  padding: 24px;
+  border-top: 1px solid #e2e8e8;
+}
+main h1, main h2 { margin: 0 0 10px; letter-spacing: -0.02em; }
+main p { margin: 0 auto; color: #5b6b70; max-width: 52ch; }
+.back {
+  position: fixed; top: 14px; left: 14px;
+  font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em;
+  text-decoration: none; color: #5b6b70;
+}

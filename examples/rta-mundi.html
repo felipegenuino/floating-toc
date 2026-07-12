@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>floating-toc — model: RTA Mundi (7 items + CTA)</title>
+    <link rel="stylesheet" href="../styles/core.css" />
+    <link rel="stylesheet" href="../styles/theme-rta.css" />
+    <link rel="stylesheet" href="./models.css" />
+  </head>
+  <body>
+    <a class="back" href="./index.html">← models</a>
+    <main>
+      <section id="overview"><h1>RTA Mundi model</h1><p>7 items + CTA — the scenario from the bug screenshots. Narrow the window: the rail must scroll, never overlap the CTA.</p></section>
+      <section id="features"><h2>Features</h2><p>Scroll…</p></section>
+      <section id="scrollspy"><h2>Scrollspy</h2><p>Scroll…</p></section>
+      <section id="animation"><h2>Animation</h2><p>Scroll…</p></section>
+      <section id="theming"><h2>Theming</h2><p>Scroll…</p></section>
+      <section id="accessibility"><h2>Accessibility</h2><p>Scroll…</p></section>
+      <section id="get-started"><h2>Get started</h2><p>End.</p></section>
+    </main>
+    <script src="../dist/index.global.js"></script>
+    <script>
+      FloatingTOC.createTOC({
+        ariaLabel: "Section index",
+        sections: [
+          { id: "overview", label: "Overview" },
+          { id: "features", label: "Features" },
+          { id: "scrollspy", label: "Scrollspy" },
+          { id: "animation", label: "Animation" },
+          { id: "theming", label: "Theming" },
+          { id: "accessibility", label: "Accessibility" },
+        ],
+        cta: { href: "#get-started", label: "Get started" },
+      });
+    </script>
+  </body>
+</html>

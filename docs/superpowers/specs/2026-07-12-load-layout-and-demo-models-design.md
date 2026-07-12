@@ -19,9 +19,30 @@ de layout:
 É a terceira regressão da mesma família (`fix(pill): getBoundingClientRect`,
 `fix: pill flash on load` já trataram sintomas).
 
-## Parte 1 — Ciclo de vida de medição (causa raiz)
+Investigação ao vivo (12/07) revelou **três causas combinadas**:
 
-Substituir os delays de medição por sinais reais:
+1. **Sem contenção no desktop:** o `overflow-x: auto` do `.ftoc-links` só
+   existe no media query mobile (≤760px). No desktop o rail é flex centrado
+   `nowrap` sem contenção — quando itens + CTA não cabem, vazam pelos dois
+   lados (screenshot: "OVERVIEW" cortado à esquerda, "ACCESSIBILITY" + pílula
+   por baixo do CTA à direita). A pílula segue corretamente um link que está,
+   de fato, embaixo do CTA.
+2. **Medição por timing chutado** (detalhado acima) — font swap tardio nunca
+   re-mede.
+3. **Demo com bundle velho inlinado:** `examples/index.html` tem uma cópia
+   colada do bundle anterior ao fix do `getBoundingClientRect` — a demo da
+   Vercel roda código desatualizado e não reflete fixes do `src/`.
+
+## Parte 1 — Ciclo de vida de medição + contenção (causa raiz)
+
+**1a. Contenção do rail em todos os tamanhos (CSS):** promover o tratamento
+que hoje é só mobile — `overflow-x: auto`, scrollbar oculta, scroll-snap —
+para o `.ftoc-links` em qualquer viewport. O rail rola quando não cabe;
+links nunca vazam por baixo do CTA nem pra fora da cápsula. A centralização
+(`justify-content: center`) permanece quando há espaço via `margin: auto`
+nos extremos ou `justify-content: safe center`.
+
+**1b. Medição por sinais reais em vez de delays:**
 
 1. **`document.fonts.ready`**: ao resolver, re-posicionar a pílula
    (`place(resting)`) — cobre font swap tardio.
@@ -52,9 +73,10 @@ todas:
 | `minimal.html` | 3 itens, sem CTA, core.css puro | menor caso |
 | `stress.html` | 10+ itens longos + CTA (força scroll do rail/mobile) | pior caso |
 
-Cada página usa o build local (`dist/index.global.js`) para servir de QA
-manual imediato após `npm run build`. Verificar durante a implementação como
-o deploy da Vercel aponta para `examples/` e manter a URL raiz funcionando.
+Cada página **referencia o build local** (`<script src="../dist/index.global.js">`
+e `styles/*.css`) em vez de inlinar cópias — fixes no `src/` passam a refletir
+na demo após `npm run build`. Verificar durante a implementação como o deploy
+da Vercel aponta para `examples/` e manter a URL raiz funcionando.
 
 ## Fora de escopo
 

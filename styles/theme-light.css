@@ -1,0 +1,31 @@
+/* floating-toc — "Paper" theme: white capsule for light pages.
+   Import AFTER core.css:
+     import "floating-toc/styles/core.css";
+     import "floating-toc/styles/theme-light.css";
+*/
+
+.ftoc {
+  background: #ffffff;
+  border: 1px solid rgba(20, 28, 32, 0.08);
+  box-shadow: 0 12px 32px rgba(20, 28, 32, 0.14);
+
+  --ftoc-color: #4a5a60;
+  --ftoc-color-active: #101b1f;
+  --ftoc-pill-bg: rgba(20, 40, 46, 0.08);
+}
+
+.ftoc-cta {
+  background: #16242a;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 11px 18px;
+  box-shadow: 0 0 0 4px rgba(22, 36, 42, 0.08);
+  transition: transform 0.15s, box-shadow 0.2s;
+}
+.ftoc-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 0 6px rgba(22, 36, 42, 0.16);
+}

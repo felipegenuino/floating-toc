@@ -1,0 +1,31 @@
+/* floating-toc — "Ink" theme: solid near-black graphite (no glass).
+   Import AFTER core.css:
+     import "floating-toc/styles/core.css";
+     import "floating-toc/styles/theme-dark.css";
+*/
+
+.ftoc {
+  background: #16181d;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.4);
+
+  --ftoc-color: #b8c0cc;
+  --ftoc-color-active: #ffffff;
+  --ftoc-pill-bg: rgba(255, 255, 255, 0.12);
+}
+
+.ftoc-cta {
+  background: #ffffff;
+  color: #16181d;
+  font-weight: 700;
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 11px 18px;
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.14);
+  transition: transform 0.15s, box-shadow 0.2s;
+}
+.ftoc-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.24);
+}

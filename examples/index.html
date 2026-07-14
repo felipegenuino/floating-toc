@@ -9,7 +9,7 @@
       content="Floating dock-style table of contents with scrollspy and a sliding pill highlight. Zero dependencies."
     />
     <link rel="stylesheet" href="../styles/core.css" />
-    <link rel="stylesheet" href="../styles/theme-rta.css" />
+    <link rel="stylesheet" href="../styles/theme-rta.css" id="ftoc-theme" />
     <style>
       /* ====================================================================
          Demo page
@@ -93,6 +93,33 @@
       }
       .models-bar span { opacity: 0.6; }
       .models-bar a { color: inherit; }
+      .theme-switch {
+        display: flex;
+        gap: 8px;
+        justify-content: center;
+        margin-top: 18px;
+      }
+      .theme-switch button {
+        font: inherit;
+        font-size: 13px;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        padding: 9px 16px;
+        border-radius: 999px;
+        border: 1px solid rgba(20, 28, 32, 0.18);
+        background: transparent;
+        color: inherit;
+        cursor: pointer;
+      }
+      .theme-switch button[aria-pressed="true"] {
+        background: #16242a;
+        color: #fff;
+        border-color: #16242a;
+      }
+      .theme-switch button:focus-visible {
+        outline: 2px solid #16242a;
+        outline-offset: 2px;
+      }
     </style>
   </head>
   <body>
@@ -144,10 +171,16 @@
     <section id="theming">
       <h2>Theming</h2>
       <p>
-        Hover the links to see the pill follow your cursor. The whole look is
-        driven by CSS variables on <code>.ftoc</code> — swap colors, radius,
-        spacing, and stagger timing without touching the JS.
+        The package ships with three ready-to-use themes — Petrol Glass, Paper,
+        and Ink — each powered by CSS variables on <code>.ftoc</code>. Switch
+        between them or create your own by tweaking colors, radius, spacing,
+        and animation timing without touching the JS.
       </p>
+      <div class="theme-switch" role="group" aria-label="Dock theme">
+        <button type="button" data-theme="theme-rta" aria-pressed="true">Petrol Glass</button>
+        <button type="button" data-theme="theme-light" aria-pressed="false">Paper</button>
+        <button type="button" data-theme="theme-dark" aria-pressed="false">Ink</button>
+      </div>
     </section>
 
     <section id="accessibility">
@@ -178,6 +211,15 @@
           { id: "accessibility", label: "Accessibility" },
         ],
         cta: { href: "#overview", label: "Get started" },
+      });
+      document.querySelectorAll(".theme-switch button").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          document.getElementById("ftoc-theme").href =
+            "../styles/" + btn.dataset.theme + ".css";
+          document.querySelectorAll(".theme-switch button").forEach(function (b) {
+            b.setAttribute("aria-pressed", String(b === btn));
+          });
+        });
       });
     </script>
   </body>

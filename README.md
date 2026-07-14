@@ -90,6 +90,11 @@ The package ships three ready-made themes (import exactly one, after `core.css`)
 | Paper | `floating-toc/styles/theme-light.css` | white capsule for light pages |
 | Ink | `floating-toc/styles/theme-dark.css` | solid near-black graphite |
 
+```js
+import "floating-toc/styles/core.css";
+import "floating-toc/styles/theme-light.css"; // pick one theme
+```
+
 Or skip themes entirely and style `.ftoc` yourself on top of the unstyled core.
 
 ## Examples

@@ -80,6 +80,18 @@ createTOC({ root: ".ftoc" });
 </script>
 ```
 
+### Themes
+
+The package ships three ready-made themes (import exactly one, after `core.css`):
+
+| Theme | File | Look |
+| --- | --- | --- |
+| Petrol Glass | `floating-toc/styles/theme-rta.css` | petrol glassmorphism |
+| Paper | `floating-toc/styles/theme-light.css` | white capsule for light pages |
+| Ink | `floating-toc/styles/theme-dark.css` | solid near-black graphite |
+
+Or skip themes entirely and style `.ftoc` yourself on top of the unstyled core.
+
 ## Examples
 
 `examples/` has one page per real-world scenario (they load `dist/` directly —
